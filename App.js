@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./app/screens/LoginScreen";
+import RegisterScreen from "./app/screens/RegisterScreen";
 
 export default function App() {
   //console.log("app executed");
@@ -11,6 +12,7 @@ export default function App() {
     //   <StatusBar style="auto" />
     // </View>
     <LoginScreen />
+    // <RegisterScreen />
   );
 }
 
