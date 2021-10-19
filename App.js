@@ -11,6 +11,7 @@ export default function App() {
     //   <Text>hello arthur</Text>
     //   <StatusBar style="auto" />
     // </View>
+    // displays screen
     <LoginScreen />
     // <RegisterScreen />
   );
