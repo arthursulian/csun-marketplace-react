@@ -44,6 +44,7 @@ function RegisterScreen({ navigation }) {
   );
 }
 
+//Styles should be fixed via Bootstrap later
 const styles = StyleSheet.create({
   container: {
     //flex: 1,
