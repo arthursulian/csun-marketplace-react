@@ -18,7 +18,7 @@ function LoginScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <View style={styles.csunLogo}>
-        <Image source={require("../assets/csunlogo.png")} />
+        <Image source={require("../assets/csun_logo_center_again.png")} />
         <Text style={styles.csunLogoText}>Marketplace</Text>
       </View>
       <View style={styles.loginField}>
