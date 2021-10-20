@@ -7,9 +7,13 @@ import {
   Text,
   TextInput,
   View,
+  Linking,
 } from "react-native";
+import RegisterScreen from "./RegisterScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-function LoginScreen(props) {
+function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -19,11 +23,18 @@ function LoginScreen(props) {
       </View>
       <View style={styles.loginField}>
         <TextInput style={styles.login} placeholder="User Name"></TextInput>
-        <TextInput style={styles.login} placeholder="Password"></TextInput>
+        <TextInput
+          secureTextEntry={true}
+          style={styles.login}
+          placeholder="Password"
+        ></TextInput>
       </View>
       <View style={styles.logInBtn}>
-        <Button title="Log In" />
-        <Button title="Register" />
+        <Button title="Log In" onPress={() => navigation.navigate("Login")} />
+        <Button
+          title="Register"
+          onPress={() => navigation.navigate("Register")}
+        />
       </View>
     </View>
   );
@@ -56,6 +67,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   logInBtn: {
+    alignSelf: "center",
     top: "160%",
     width: "50%",
   },

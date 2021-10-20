@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 
-function RegisterScreen(props) {
+function RegisterScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -23,14 +23,22 @@ function RegisterScreen(props) {
         <Text> CSUN email required to register</Text>
         <TextInput style={styles.register} placeholder="CSUN Email"></TextInput>
         <TextInput style={styles.register} placeholder="User Name"></TextInput>
-        <TextInput style={styles.register} placeholder="Password"></TextInput>
         <TextInput
+          secureTextEntry={true}
+          style={styles.register}
+          placeholder="Password"
+        ></TextInput>
+        <TextInput
+          secureTextEntry={true}
           style={styles.register}
           placeholder="Confirm Password"
         ></TextInput>
       </View>
       <View style={styles.registerBtn}>
-        <Button title="Register" />
+        <Button
+          title="Register"
+          onPress={() => navigation.navigate("Register")}
+        />
       </View>
     </View>
   );
@@ -65,6 +73,7 @@ const styles = StyleSheet.create({
   registerBtn: {
     top: "90%",
     width: "50%",
+    alignSelf: "center",
   },
 });
 
