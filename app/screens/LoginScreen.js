@@ -7,7 +7,6 @@ import {
   Text,
   TextInput,
   View,
-  Linking,
 } from "react-native";
 import RegisterScreen from "./RegisterScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -16,7 +15,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="auto" backgroundColor="#D22030" />
       <View style={styles.csunLogo}>
         <Image source={require("../assets/csun_logo_center_again.png")} />
         <Text style={styles.csunLogoText}>Marketplace</Text>
@@ -29,11 +28,25 @@ function LoginScreen({ navigation }) {
           placeholder="Password"
         ></TextInput>
       </View>
-      <View style={styles.logInBtn}>
-        <Button title="Log In" onPress={() => navigation.navigate("Login")} />
+      <View style={styles.navButtons}>
+        <Button
+          title="Log In"
+          color="#D22030"
+          onPress={() => navigation.navigate("Login")}
+        />
+      </View>
+      <View style={styles.navButtons}>
         <Button
           title="Register"
+          color="#D22030"
           onPress={() => navigation.navigate("Register")}
+        />
+      </View>
+      <View style={styles.navButtons}>
+        <Button
+          title="Sample User Profile"
+          color="#D22030"
+          onPress={() => navigation.navigate("Profile")}
         />
       </View>
     </View>
@@ -58,7 +71,7 @@ const styles = StyleSheet.create({
   },
   loginField: {
     //position: "absolute",
-    top: "150%",
+    top: "90%",
   },
   login: {
     height: 40,
@@ -66,10 +79,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  logInBtn: {
+  navButtons: {
     alignSelf: "center",
-    top: "160%",
+    top: "100%",
     width: "50%",
+    marginVertical: 8,
   },
 });
 
