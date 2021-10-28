@@ -32,7 +32,7 @@ function LoginScreen({ navigation }) {
         <Button
           title="Log In"
           color="#D22030"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate("Feed")}
         />
       </View>
       <View style={styles.navButtons}>
