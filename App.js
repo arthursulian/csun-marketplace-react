@@ -8,6 +8,28 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import FeedScreen from "./app/screens/FeedScreen";
 
+// from tutorial
+// import { createStore, combineReducers } from "redux";
+// import { Provider } from "react-redux";
+
+// import productsReducer from "./store/reducers/products";
+
+// const rootReducer = combineReducers({
+//   PRODUCTS: productsReducer,
+// });
+
+// const store = createStore(rootReducer);
+
+// export default function App() {
+//   return (
+//     <Provider store={store}>
+//       <ShopNavigator />
+//     </Provider>
+//   );
+// }
+
+//
+
 const Stack = createNativeStackNavigator();
 
 function App() {
