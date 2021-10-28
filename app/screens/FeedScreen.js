@@ -76,7 +76,7 @@ function FeedScreen({ navigation }) {
 } */}
 
       <ItemDetail category="Name" value={productList[0][0]} />
-      <ItemDetail category="Price" value={productList[0][3]} />
+      <ItemDetail category="Price" value={"$" + productList[0][3]} />
       <ItemDetail category="Description" value={productList[0][2]} />
       <Image
         style={styles.itemImage}
@@ -85,7 +85,7 @@ function FeedScreen({ navigation }) {
         }}
       />
       <ItemDetail category="Name" value={productList[1][0]} />
-      <ItemDetail category="Price" value={productList[1][3]} />
+      <ItemDetail category="Price" value={"$" + productList[1][3]} />
       <ItemDetail category="Description" value={productList[1][2]} />
       <Image
         style={styles.itemImage}
@@ -94,7 +94,7 @@ function FeedScreen({ navigation }) {
         }}
       />
       <ItemDetail category="Name" value={productList[2][0]} />
-      <ItemDetail category="Price" value={productList[2][3]} />
+      <ItemDetail category="Price" value={"$" + productList[2][3]} />
       <ItemDetail category="Description" value={productList[2][2]} />
       <Image
         style={styles.itemImage}
@@ -103,7 +103,7 @@ function FeedScreen({ navigation }) {
         }}
       />
       <ItemDetail category="Name" value={productList[3][0]} />
-      <ItemDetail category="Price" value={productList[3][3]} />
+      <ItemDetail category="Price" value={"$" + productList[3][3]} />
       <ItemDetail category="Description" value={productList[3][2]} />
       <Image
         style={styles.itemImage}
@@ -112,7 +112,7 @@ function FeedScreen({ navigation }) {
         }}
       />
       <ItemDetail category="Name" value={productList[4][0]} />
-      <ItemDetail category="Price" value={productList[4][3]} />
+      <ItemDetail category="Price" value={"$" + productList[4][3]} />
       <ItemDetail category="Description" value={productList[4][2]} />
       <Image
         style={styles.itemImage}
