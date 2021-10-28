@@ -62,8 +62,7 @@ var productList = [
 function FeedScreen({ navigation }) {
   return (
     <ScrollView style={styles.mainFeed}>
-      {/* <Text style={styles.itemeHeader}>Details</Text> */}
-
+      {/* Im trying to make a for loop that runns throught every element in the array but I couldnt figure it out :(  */}
       {/* for (varr i = 0; i < productList.length; i++) {
       <ItemDetail category="Name" value={productList[i][0]} />
       <ItemDetail category="Price" value={productList[i][3]} />
