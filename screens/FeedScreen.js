@@ -14,7 +14,6 @@ import {
 import { useSelector } from "react-redux";
 import ProductItem from "../components/shop/ProductItem";
 
-/*
 const ItemDetail = (props) => {
   return (
     <View>
@@ -61,23 +60,11 @@ var productList = [
     5.49,
   ],
 ];
-/*
- {/* Im trying to make a for loop that runns throught every element in the array but I couldnt figure it out :(  */
-/* for (varr i = 0; i < productList.length; i++) {
-      <ItemDetail category="Name" value={productList[i][0]} />
-      <ItemDetail category="Price" value={productList[i][3]} />
-      <ItemDetail category="Description" value={productList[i][2]} />
-      <Image
-        style={styles.itemImage}
-        source={{
-          uri: productList[i][1],
-        }}
-      />
-} */
 
-// function rsf
-function FeedScreen({ navigation }) {
+/*
+function FeedScreen({ state }) {
   const products = useSelector((state) => state.products.availableProducts);
+  //console.log(products);
   return (
     <FlatList
       data={products}
@@ -93,8 +80,9 @@ function FeedScreen({ navigation }) {
     />
   );
 }
-/*
-return (
+*/
+function FeedScreen({ state }) {
+  return (
     <ScrollView style={styles.mainFeed}>
       <ItemDetail category="Name" value={productList[0][0]} />
       <ItemDetail category="Price" value={"$" + productList[0][3]} />
@@ -143,7 +131,8 @@ return (
       />
     </ScrollView>
   );
-*/
+}
+
 //styes = rnss
 const styles = StyleSheet.create({
   mainFeed: {
