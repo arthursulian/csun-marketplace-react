@@ -1,65 +1,59 @@
+//General React/Expo Import Statements
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import LoginScreen from "./app/screens/LoginScreen";
-import RegisterScreen from "./app/screens/RegisterScreen";
-import ProfileScreen from "./app/screens/ProfileScreen";
+
+// Screen Import Statements
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import FeedScreen from "./screens/FeedScreen";
+
+//Navigation Imports
+import "react-native-gesture-handler";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import FeedScreen from "./app/screens/FeedScreen";
 
-// from tutorial
-// import { createStore, combineReducers } from "redux";
-// import { Provider } from "react-redux";
+// Redux, Reducers, Actions
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import productsReducer from "./store/reducers/products";
+import { Provider } from "react-redux";
+import ReduxThunk from "redux-thunk";
 
-// import productsReducer from "./store/reducers/products";
+const rootReducer = combineReducers({
+  products: productsReducer,
+});
 
-// const rootReducer = combineReducers({
-//   PRODUCTS: productsReducer,
-// });
+// Redux const needed
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
-// const store = createStore(rootReducer);
-
-// export default function App() {
-//   return (
-//     <Provider store={store}>
-//       <ShopNavigator />
-//     </Provider>
-//   );
-// }
-
-//
-
-const Stack = createNativeStackNavigator();
+// Stack navigator needed for moving between screens
+const Stack = createStackNavigator();
 
 function App() {
-  //console.log("app executed");
   return (
-    // <View style={styles.container}>
-    //   <Text>hello arthur</Text>
-    //   <StatusBar style="auto" />
-    // </View>
-    // displays screen
-    //<NavigationContainer>{<LoginScreen />}</NavigationContainer>
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Feed" component={FeedScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-    // <RegisterScreen />
+    // JSX Element needed as root element for Redux
+    <Provider store={store}>
+      {/*Nav Element needed */}
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Feed" component={FeedScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
 export default App;
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

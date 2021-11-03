@@ -1,5 +1,6 @@
 // hi
-import React from "react";
+// owo hey
+import React, { useState } from "react";
 import {
   Image,
   ScrollView,
@@ -7,9 +8,11 @@ import {
   View,
   StyleSheet,
   FlatList,
+  StatusBar,
 } from "react-native";
 
-//import * as productList from "../../data/dummy-data";
+import { useSelector } from "react-redux";
+import ProductItem from "../components/shop/ProductItem";
 
 const ItemDetail = (props) => {
   return (
@@ -58,23 +61,29 @@ var productList = [
   ],
 ];
 
-// function rsf
-function FeedScreen({ navigation }) {
+/*
+function FeedScreen({ state }) {
+  const products = useSelector((state) => state.products.availableProducts);
+  //console.log(products);
+  return (
+    <FlatList
+      data={products}
+      keyExtractor={(item) => item.id}
+      renderItem={(itemData) => (
+        <ProductItem
+          title={itemData.item.title}
+          price={itemData.item.price}
+          description={itemData.item.description}
+          image={itemData.item.imageUrl}
+        />
+      )}
+    />
+  );
+}
+*/
+function FeedScreen({ state }) {
   return (
     <ScrollView style={styles.mainFeed}>
-      {/* Im trying to make a for loop that runns throught every element in the array but I couldnt figure it out :(  */}
-      {/* for (varr i = 0; i < productList.length; i++) {
-      <ItemDetail category="Name" value={productList[i][0]} />
-      <ItemDetail category="Price" value={productList[i][3]} />
-      <ItemDetail category="Description" value={productList[i][2]} />
-      <Image
-        style={styles.itemImage}
-        source={{
-          uri: productList[i][1],
-        }}
-      />
-} */}
-
       <ItemDetail category="Name" value={productList[0][0]} />
       <ItemDetail category="Price" value={"$" + productList[0][3]} />
       <ItemDetail category="Description" value={productList[0][2]} />
@@ -123,17 +132,11 @@ function FeedScreen({ navigation }) {
     </ScrollView>
   );
 }
+
 //styes = rnss
 const styles = StyleSheet.create({
   mainFeed: {
     padding: 15,
-  },
-  textStyle: {
-    fontSize: 45,
-  },
-
-  textStyles: {
-    fontSize: 100,
   },
 
   itemImage: {

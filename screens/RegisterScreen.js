@@ -15,7 +15,7 @@ function RegisterScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <View style={styles.csunLogo}>
-        <Image source={require("../assets/csun_logo_center_again.png")} />
+        <Image source={require("../app/assets/csun_logo_center_again.png")} />
         <Text style={styles.csunLogoText}>Marketplace</Text>
         <Text style={styles.csunLogoText}>Registration</Text>
       </View>
