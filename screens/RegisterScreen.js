@@ -26,7 +26,7 @@ function RegisterScreen({ navigation }) {
         <TextInput
           secureTextEntry={true}
           style={styles.register}
-          placeholder="Password"
+          placeholder="Create Password"
         ></TextInput>
         <TextInput
           secureTextEntry={true}
@@ -36,6 +36,7 @@ function RegisterScreen({ navigation }) {
       </View>
       <View style={styles.registerBtn}>
         <Button
+          color="#D22030"
           title="Register"
           onPress={() => navigation.navigate("Register")}
         />

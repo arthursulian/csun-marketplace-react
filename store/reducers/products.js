@@ -1,4 +1,5 @@
-import PRODUCTS  from "../../data/dummy-data";
+import { combineReducers } from "redux";
+import PRODUCTS from "../../data/dummy-data";
 
 const initialState = {
   availableProducts: PRODUCTS,
@@ -11,10 +12,9 @@ const productsReducer = (state = initialState, action) => {
 };
 
 const RootReducer = combineReducers({
-  productsReducer
-})
+  productsReducer,
+});
 
-export const selectProducts = state => state.availableProducts;
-
+export const selectProducts = (state) => PRODUCTS;
 
 export default RootReducer;

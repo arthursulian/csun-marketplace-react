@@ -39,16 +39,22 @@ function LoginScreen({ navigation }) {
           ></TextInput>
         </View>
         <View style={styles.navButtons}>
-          <Button title="Log In" onPress={() => navigation.navigate("Feed")} />
+          <Button
+            color="#D22030"
+            title="Log In"
+            onPress={() => navigation.navigate("Feed")}
+          />
         </View>
         <View style={styles.navButtons}>
           <Button
+            color="#D22030"
             title="Register"
             onPress={() => navigation.navigate("Register")}
           />
         </View>
         <View style={styles.navButtons}>
           <Button
+            color="#D22030"
             title="Sample User Profile"
             onPress={() => navigation.navigate("Profile")}
           />
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
   //The Views containing the buttons
   navButtons: {
     alignSelf: "center",
-    //color: "#D22030",
+    color: "#D22030",
     paddingTop: 5,
   },
 });

@@ -78,9 +78,11 @@ var productList = [
 
 // function rsf
 function FeedScreen({ navigation }) {
-  const products = selectProducts;
+  const products = useSelector(selectProducts);
+  // console.log(products);
   return (
     <FlatList
+      style={styles.mainFeed}
       data={products}
       keyExtractor={(item) => item.id}
       renderItem={(itemData) => (
@@ -149,23 +151,6 @@ return (
 const styles = StyleSheet.create({
   mainFeed: {
     padding: 15,
-  },
-
-  itemImage: {
-    alignSelf: "center",
-    width: 256,
-    height: 256,
-    margin: 32,
-  },
-
-  itemHeader: {
-    color: "grey",
-    marginTop: 16,
-    marginBottom: 4,
-    fontSize: 24,
-  },
-  bold: {
-    fontWeight: "bold",
   },
 });
 

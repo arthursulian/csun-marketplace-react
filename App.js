@@ -20,7 +20,6 @@ import rootReducer from "./store/reducers/products";
 import { Provider } from "react-redux";
 import ReduxThunk from "redux-thunk";
 
-
 // Redux const needed
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
