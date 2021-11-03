@@ -13,6 +13,7 @@ import {
 
 import { useSelector } from "react-redux";
 import ProductItem from "../components/shop/ProductItem";
+import { selectProducts } from "../store/reducers/products";
 
 /*
 const ItemDetail = (props) => {
@@ -77,7 +78,7 @@ var productList = [
 
 // function rsf
 function FeedScreen({ navigation }) {
-  const products = useSelector((state) => state.products.availableProducts);
+  const products = selectProducts;
   return (
     <FlatList
       data={products}
