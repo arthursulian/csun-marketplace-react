@@ -50,7 +50,6 @@ const PRODUCTS = [
     5.49
   ),
 ];
-console.log(PRODUCTS);
 
 export default PRODUCTS;
 
