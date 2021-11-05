@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { SET_AVAILABLE_PRODUCTS } from "../actions/products";
 import PRODUCTS from "../../data/dummy-data";
 
 const initialState = {
@@ -8,13 +8,10 @@ const initialState = {
 };
 
 const productsReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    default:
+      return state;
+  }
 };
 
-const RootReducer = combineReducers({
-  productsReducer,
-});
-
-export const selectProducts = (state) => PRODUCTS;
-
-export default RootReducer;
+export default productsReducer;

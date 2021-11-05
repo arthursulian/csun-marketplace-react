@@ -11,10 +11,9 @@ import {
   StatusBar,
 } from "react-native";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
+import { setAvailableProducts } from "../redux/actions/products";
 import ProductItem from "../components/shop/ProductItem";
-import { selectProducts } from "../store/reducers/products";
-
 /*
 const ItemDetail = (props) => {
   return (
@@ -77,13 +76,14 @@ var productList = [
 } */
 
 // function rsf
+
 function FeedScreen({ navigation }) {
-  const products = useSelector(selectProducts);
+  const { availableProducts } = useSelector((state) => state.productsReducer);
   // console.log(products);
   return (
     <FlatList
       style={styles.mainFeed}
-      data={products}
+      data={availableProducts}
       keyExtractor={(item) => item.id}
       renderItem={(itemData) => (
         <ProductItem
