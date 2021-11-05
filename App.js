@@ -14,18 +14,9 @@ import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-// Redux, Reducers, Actions
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import productsReducer from "./store/reducers/products";
+// Redux Stuff
 import { Provider } from "react-redux";
-import ReduxThunk from "redux-thunk";
-
-const rootReducer = combineReducers({
-  products: productsReducer,
-});
-
-// Redux const needed
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+import { Store } from "./redux/store/store";
 
 // Stack navigator needed for moving between screens
 const Stack = createStackNavigator();
@@ -33,7 +24,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     // JSX Element needed as root element for Redux
-    <Provider store={store}>
+    <Provider store={Store}>
       {/*Nav Element needed */}
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
