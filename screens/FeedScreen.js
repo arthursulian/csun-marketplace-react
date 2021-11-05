@@ -15,9 +15,6 @@ import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 import { setAvailableProducts } from "../redux/actions/products";
 import ProductItem from "../components/shop/ProductItem";
 
-function FeedScreen({ navigation }) {
-  const { availableProducts } = useSelector((state) => state.productsReducer);
-
 const ItemDetail = (props) => {
   return (
     <View>
@@ -28,7 +25,7 @@ const ItemDetail = (props) => {
   );
 };
 
-function FeedScreen({ state }) {
+function FeedScreen({ navigation }) {
   const products = useSelector((state) => state.products.availableProducts);
   return (
     <FlatList
