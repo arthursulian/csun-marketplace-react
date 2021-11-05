@@ -18,6 +18,18 @@ import ProductItem from "../components/shop/ProductItem";
 function FeedScreen({ navigation }) {
   const { availableProducts } = useSelector((state) => state.productsReducer);
 
+const ItemDetail = (props) => {
+  return (
+    <View>
+      <Text>
+        {props.category}: <Text style={styles.bold}>{props.value}</Text>
+      </Text>
+    </View>
+  );
+};
+
+function FeedScreen({ state }) {
+  const products = useSelector((state) => state.products.availableProducts);
   return (
     <FlatList
       style={styles.mainFeed}
