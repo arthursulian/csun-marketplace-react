@@ -1,5 +1,4 @@
 //General React/Expo Import Statements
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -17,6 +16,7 @@ import { NavigationContainer } from "@react-navigation/native";
 // Redux Stuff
 import { Provider } from "react-redux";
 import { Store } from "./redux/store/store";
+import HeaderRight from "./components/HeaderRight";
 
 // Stack navigator needed for moving between screens
 const Stack = createStackNavigator();
@@ -31,15 +31,18 @@ function App() {
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="Feed" component={FeedScreen} />
+          <Stack.Screen
+            name="Feed"
+            component={FeedScreen}
+            options={{
+              headerRight: (props) => <HeaderRight {...props} />,
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
 }
-
-export default App;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -48,3 +51,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default App;
