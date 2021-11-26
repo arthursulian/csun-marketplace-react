@@ -4,13 +4,13 @@ import { View, Text, Image, StyleSheet, Button } from "react-native";
 const ProductItem = (props) => {
   return (
     <View style={styles.product}>
+      <View style={styles.imgView}>
+        <Image style={styles.img} source={{ uri: props.image }} />
+      </View>
       <View style={styles.textView}>
         <Text style={styles.itemHeader}>{props.title}</Text>
         <Text style={styles.itemPrice}>${props.price.toFixed(2)}</Text>
         <Text>{props.description}</Text>
-      </View>
-      <View style={styles.imgView}>
-        <Image style={styles.img} source={{ uri: props.image }} />
       </View>
     </View>
   );
@@ -19,7 +19,16 @@ const ProductItem = (props) => {
 const styles = StyleSheet.create({
   // View containing entire Product item
   product: {
-    padding: 1,
+    padding: 16,
+    backgroundColor: "#ffffff",
+    margin: 16,
+    borderRadius: 10,
+    // blugh this only does something on iOS
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    // blugh this only does something on Android
+    shadowColor: "#000000",
+    elevation: 3,
   },
   // View containing Title, Price, Description of Product
   textView: {
@@ -29,8 +38,8 @@ const styles = StyleSheet.create({
   // Product title
   itemHeader: {
     color: "#D22030",
-    marginTop: 16,
-    marginBottom: 4,
+    marginTop: 0,
+    marginBottom: 0,
     fontSize: 24,
   },
 
@@ -47,7 +56,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 256,
     height: 256,
-    margin: 32,
+    margin: 16,
   },
 });
 

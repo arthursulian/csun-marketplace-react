@@ -28,7 +28,7 @@ function FeedScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   mainFeed: {
-    padding: 15,
+    padding: 0,
   },
 });
 
