@@ -56,6 +56,13 @@ function LoginScreen({ navigation }) {
             onPress={() => navigation.navigate("Profile")}
           />
         </View>
+        <View style={styles.navButtons}>
+          <Button
+            color="#D22030"
+            title="Sample Product Listing"
+            onPress={() => navigation.navigate("Product")}
+          />
+        </View>
       </View>
     </View>
   );

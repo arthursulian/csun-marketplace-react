@@ -7,6 +7,7 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import FeedScreen from "./screens/FeedScreen";
+import ProductScreen from "./screens/ProductScreen";
 
 //Navigation Imports
 import "react-native-gesture-handler";
@@ -30,6 +31,7 @@ function App() {
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="Product" component={ProductScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen
             name="Feed"
