@@ -1,34 +1,36 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image, Text, Button } from "react-native";
+import GlobalStyles from "../GlobalStyles";
 
 function ProductListing(props) {
   return (
-    <View>
+    <View style={GlobalStyles.pageContainer}>
       <Image
-        style={styles.productImage}
+        style={GlobalStyles.centeredImage}
         source={{
           uri: props.product.imageUrl,
         }}
       ></Image>
-      <Text style={styles.title}>{props.product.title}</Text>
-      <Text style={styles.header}>Item Details</Text>
+      <Text style={GlobalStyles.title}>{props.product.title}</Text>
+      <Text style={GlobalStyles.header}>Item Details</Text>
       <Text>
-        <Text style={styles.bold}>Seller ID: </Text>
+        <Text style={GlobalStyles.bold}>Seller ID: </Text>
         {props.product.ownerId}
       </Text>
       <Text>
-        <Text style={styles.bold}>Price: </Text>$
+        <Text style={GlobalStyles.bold}>Price: </Text>$
         {props.product.price.toFixed(2)}
       </Text>
-      <View style={styles.buyButton}>
+      <View style={GlobalStyles.centeredButton}>
         <Button color="#D22030" title="Buy Item" />
       </View>
-      <Text style={styles.header}>Item Description</Text>
+      <Text style={GlobalStyles.header}>Item Description</Text>
       <Text>{props.product.description}</Text>
     </View>
   );
 }
 
+/*
 const styles = StyleSheet.create({
   header: {
     color: "grey",
@@ -63,5 +65,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+*/
 
 export default ProductListing;
