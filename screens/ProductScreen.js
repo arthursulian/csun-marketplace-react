@@ -5,10 +5,10 @@ import PRODUCTS from "../data/dummy-data";
 
 // this is basically just a shell, for the actual guts behind it go to ../components/shop/ProductListing.js
 
-function ProductScreen({ navigation }) {
+function ProductScreen({ navigation, route }) {
   return (
     <ScrollView style={styles.container}>
-      <ProductListing product={PRODUCTS[3]} />
+      <ProductListing product={route.params.product} />
     </ScrollView>
   );
 }

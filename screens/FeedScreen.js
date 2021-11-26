@@ -14,14 +14,7 @@ function FeedScreen({ navigation }) {
       style={styles.mainFeed}
       data={availableProducts}
       keyExtractor={(item) => item.id}
-      renderItem={(itemData) => (
-        <ProductItem
-          title={itemData.item.title}
-          price={itemData.item.price}
-          description={itemData.item.description}
-          image={itemData.item.imageUrl}
-        />
-      )}
+      renderItem={(itemData) => <ProductItem product={itemData.item} />}
     />
   );
 }

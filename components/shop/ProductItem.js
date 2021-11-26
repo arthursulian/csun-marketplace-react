@@ -1,18 +1,27 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, Image, StyleSheet, Button } from "react-native";
+import { View, Text, Image, Pressable, StyleSheet, Button } from "react-native";
 
 const ProductItem = (props) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.product}>
+    <Pressable style={styles.product}>
       <View style={styles.imgView}>
-        <Image style={styles.img} source={{ uri: props.image }} />
+        <Image style={styles.img} source={{ uri: props.product.imageUrl }} />
       </View>
       <View style={styles.textView}>
-        <Text style={styles.itemHeader}>{props.title}</Text>
-        <Text style={styles.itemPrice}>${props.price.toFixed(2)}</Text>
-        <Text>{props.description}</Text>
+        <Text style={styles.itemHeader}>{props.product.title}</Text>
+        <Text style={styles.itemPrice}>${props.product.price.toFixed(2)}</Text>
+        <Text>{props.product.description}</Text>
       </View>
-    </View>
+      <Button
+        title="View"
+        color="#D22030"
+        onPress={() =>
+          navigation.navigate("Product", { product: props.product })
+        }
+      />
+    </Pressable>
   );
 };
 
@@ -32,7 +41,7 @@ const styles = StyleSheet.create({
   },
   // View containing Title, Price, Description of Product
   textView: {
-    padding: 1,
+    marginBottom: 8,
   },
 
   // Product title
