@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image, Text, Button } from "react-native";
 import GlobalStyles from "../GlobalStyles";
+import { getUserByID } from "../HelperMethods";
+import { useNavigation } from "@react-navigation/native";
 
 function ProductListing(props) {
+  const navigation = useNavigation();
   return (
     <View style={GlobalStyles.pageContainer}>
       <Image
@@ -14,18 +17,29 @@ function ProductListing(props) {
       <Text style={GlobalStyles.title}>{props.product.title}</Text>
       <Text style={GlobalStyles.header}>Item Details</Text>
       <Text>
-        <Text style={GlobalStyles.bold}>Seller ID: </Text>
-        {props.product.ownerId}
+        <Text style={GlobalStyles.bold}>Seller Name: </Text>
+        {getUserByID(props.product.ownerId).name}
       </Text>
       <Text>
         <Text style={GlobalStyles.bold}>Price: </Text>$
         {props.product.price.toFixed(2)}
       </Text>
       <View style={GlobalStyles.centeredButton}>
-        <Button color="#D22030" title="Buy Item" />
+        <Button
+          color="#D22030"
+          title="View Seller Profile"
+          onPress={() =>
+            navigation.navigate("Profile", {
+              user: getUserByID(props.product.ownerId),
+            })
+          }
+        />
       </View>
       <Text style={GlobalStyles.header}>Item Description</Text>
       <Text>{props.product.description}</Text>
+      <View style={GlobalStyles.centeredButton}>
+        <Button color="#D22030" title="Buy Item" />
+      </View>
     </View>
   );
 }
