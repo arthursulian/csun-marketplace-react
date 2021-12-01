@@ -1,36 +1,58 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, Image, StyleSheet, Button } from "react-native";
+import { View, Text, Image, Pressable, StyleSheet, Button } from "react-native";
+import GlobalStyles from "../GlobalStyles";
 
 const ProductItem = (props) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.product}>
-      <View style={styles.textView}>
-        <Text style={styles.itemHeader}>{props.title}</Text>
-        <Text style={styles.itemPrice}>${props.price.toFixed(2)}</Text>
-        <Text>{props.description}</Text>
-      </View>
+    <Pressable style={styles.product}>
       <View style={styles.imgView}>
-        <Image style={styles.img} source={{ uri: props.image }} />
+        <Image
+          style={GlobalStyles.centeredImage}
+          source={{ uri: props.product.imageUrl }}
+        />
       </View>
-    </View>
+      <View style={styles.textView}>
+        <Text style={styles.itemHeader}>{props.product.title}</Text>
+        <Text style={styles.itemPrice}>${props.product.price.toFixed(2)}</Text>
+        <Text>{props.product.description}</Text>
+      </View>
+      <Button
+        title="View"
+        color="#D22030"
+        onPress={() =>
+          navigation.navigate("Product", { product: props.product })
+        }
+      />
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   // View containing entire Product item
   product: {
-    padding: 1,
+    padding: 16,
+    backgroundColor: "#ffffff",
+    margin: 16,
+    borderRadius: 10,
+    // blugh this only does something on iOS
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    // blugh this only does something on Android
+    shadowColor: "#000000",
+    elevation: 3,
   },
   // View containing Title, Price, Description of Product
   textView: {
-    padding: 1,
+    marginBottom: 8,
   },
 
   // Product title
   itemHeader: {
     color: "#D22030",
-    marginTop: 16,
-    marginBottom: 4,
+    marginTop: 0,
+    marginBottom: 0,
     fontSize: 24,
   },
 
@@ -47,7 +69,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 256,
     height: 256,
-    margin: 32,
+    margin: 16,
   },
 });
 
