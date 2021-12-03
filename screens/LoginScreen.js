@@ -59,7 +59,7 @@ function LoginScreen({ navigation }) {
             onChangeText={(text) => setPassword(text)}
           ></TextInput>
           {!authStatus && (
-            <Text style={styles.invalid}> Passwords must match</Text>
+            <Text style={styles.invalid}>Invalid credentials</Text>
           )}
         </View>
         <View style={styles.navButtons}>
