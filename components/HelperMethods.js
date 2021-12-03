@@ -18,8 +18,12 @@ function getProductsByOwner(id) {
 
 function authenticate(email, password) {
   let user = USERS.find((user) => user.email == email);
-  if (user.password == password) {
-    return user;
+  if (user != undefined) {
+    if (user.password == password) {
+      return user;
+    } else {
+      return false;
+    }
   } else {
     return false;
   }

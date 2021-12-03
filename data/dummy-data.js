@@ -79,8 +79,8 @@ let USERS = [
   ),
   new User(
     "u3",
-    "christopher.owen@my.csun.edu",
-    "password",
+    "a",
+    "a",
     "Chris Owen",
     "https://cdn.discordapp.com/attachments/754862860105941102/814286387149799454/183b142f384f0798eac8c4b8c0c23925.png",
     "To be fair, you have to have a very high IQ to understand Rick and Morty.",

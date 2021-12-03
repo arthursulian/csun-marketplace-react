@@ -8,12 +8,28 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { useSelector } from "react-redux";
 
 import { authenticate } from "../components/HelperMethods";
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [authStatus, setAuthStatus] = useState("true");
+
+  const logIn = () => {
+    let userExists = authenticate(email, password);
+    if (!userExists) {
+      console.log(":(");
+      setAuthStatus(false);
+    } else {
+      console.log("Nice");
+
+      navigation.navigate("Feed", userExists);
+    }
+
+    //navigation.navigate("Feed", {loggedIn: this.state.});
+  };
 
   return (
     <View style={styles.container}>
@@ -43,13 +59,12 @@ function LoginScreen({ navigation }) {
             value={password}
             onChangeText={(text) => setPassword(text)}
           ></TextInput>
+          {!authStatus && (
+            <Text style={styles.invalid}> Passwords must match</Text>
+          )}
         </View>
         <View style={styles.navButtons}>
-          <Button
-            color="#D22030"
-            title="Log In"
-            onPress={() => navigation.navigate("Feed")}
-          />
+          <Button color="#D22030" title="Log In" onPress={logIn} />
         </View>
         <View style={styles.navButtons}>
           <Button
@@ -113,6 +128,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     color: "#D22030",
     paddingTop: 5,
+  },
+  invalid: {
+    color: "red",
   },
 });
 

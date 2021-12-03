@@ -1,3 +1,5 @@
+// hi
+// owo hey
 import React, { useState } from "react";
 import { StyleSheet, FlatList, StatusBar } from "react-native";
 

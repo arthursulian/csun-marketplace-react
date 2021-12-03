@@ -61,10 +61,8 @@ function RegisterScreen({ navigation }) {
 
   const checkConfirmPassword = (text) => {
     if (password != text) {
-      console.log("Not Nice");
       setPasswordMatch(false);
     } else {
-      console.log("Nice");
       setPasswordMatch(true);
     }
     setConfirmPassword(text);
@@ -73,10 +71,8 @@ function RegisterScreen({ navigation }) {
   const checkPassword = (text) => {
     if (confirmPassword != "") {
       if (text != confirmPassword) {
-        console.log("Not Nice");
         setPasswordMatch(false);
       } else {
-        console.log("Nice");
         setPasswordMatch(true);
       }
     }
@@ -151,6 +147,7 @@ function RegisterScreen({ navigation }) {
             style={styles.register}
             placeholder="Create Password"
             value={password}
+            autoCapitalize={"none"}
             onChangeText={checkPassword}
           />
           <TextInput
@@ -158,6 +155,7 @@ function RegisterScreen({ navigation }) {
             style={styles.register}
             placeholder="Confirm Password"
             value={confirmPassword}
+            autoCapitalize={"none"}
             onChangeText={checkConfirmPassword}
           />
           {!passwordMatch && (

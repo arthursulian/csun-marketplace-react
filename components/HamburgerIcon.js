@@ -3,15 +3,17 @@
 */
 import React from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/core";
 
 import MenuSidePanel from "./MenuSidePanel";
 
-const HamburgerIcon = (navigation) => {
+const HamburgerIcon = (props) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          // Render side panel here once navigator tabs are figured out
+          navigation.navigate("Profile", { user: navigation.userExists });
         }}
       >
         <Image
