@@ -16,9 +16,18 @@ function getProductsByOwner(id) {
   return PRODUCTS.filter((prod) => prod.ownerId == id);
 }
 
+function authenticate(email, password) {
+  let user = USERS.find((user) => user.email == email);
+  if (user.password == password) {
+    return user;
+  } else {
+    return false;
+  }
+}
+
 function createNewUser(props) {
   //PRODUCTS
 }
 
-export { getUserByID, getProductsByOwner };
+export { getUserByID, getProductsByOwner, authenticate };
 export default getProductByID;

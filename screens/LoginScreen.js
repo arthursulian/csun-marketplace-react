@@ -9,26 +9,11 @@ import {
   View,
 } from "react-native";
 
+import { authenticate } from "../components/HelperMethods";
+
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
-  const [emailIsValid, setEmailIsValid] = useState("false");
   const [password, setPassword] = useState("");
-
-  const checkCSUNEmail = (text) => {
-    // Stole this regex from Google, checks the user's input for valid email characters and also checks the domain to be @csun.edu
-    var re =
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(text)) {
-      if (text.indexOf("@csun.edu", text.length - "@csun.edu".length) !== -1) {
-        //VALID
-        setEmailIsValid(true);
-        console.log("VALID");
-      } else {
-        setEmailIsValid(false);
-      }
-    }
-    setEmail(text);
-  };
 
   return (
     <View style={styles.container}>
@@ -47,7 +32,7 @@ function LoginScreen({ navigation }) {
             style={styles.loginField}
             placeholder="Email"
             value={email}
-            onChangeText={checkCSUNEmail}
+            onChangeText={(text) => setEmail(text)}
           ></TextInput>
         </View>
         <View style={styles.loginContainer}>

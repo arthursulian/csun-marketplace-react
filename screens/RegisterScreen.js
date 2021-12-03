@@ -1,16 +1,23 @@
 import React from "react";
+import User from "../models/user";
 
 import {
   Button,
   Image,
-  StatusBar,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
-import { useState } from "react";
-import { color } from "react-native-reanimated";
+import { useState, useReducer } from "react";
+import { ScrollView } from "react-native-gesture-handler";
+import { USERS } from "../data/dummy-data";
+
+const formReducer = (state, action) => {
+  if (action.type === "UPDATE") {
+  }
+};
 
 function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -18,6 +25,21 @@ function RegisterScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState("false");
+  const [userName, setUserName] = useState("");
+  const [gender, setGender] = useState("");
+  const [major, setMajor] = useState("");
+  const [createAccount, setCreateAccount] = useState("true");
+  /*
+  useReducer(formReducer, {
+    inputValues: {
+      email: "",
+      password: "",
+    },
+    inputValidities: {},
+    formIsValid: false,
+  });
+  Figure out reducer shit later
+  */
 
   const checkCSUNEmail = (text) => {
     // Stole this regex from Google, checks the user's input for valid email characters and also checks the domain to be @csun.edu
@@ -38,60 +60,121 @@ function RegisterScreen({ navigation }) {
   };
 
   const checkConfirmPassword = (text) => {
-    setConfirmPassword(text);
-    if (password == confirmPassword) {
-      console.log("Nice");
-      setPasswordMatch("true");
+    if (password != text) {
+      console.log("Not Nice");
+      setPasswordMatch(false);
     } else {
-      setPasswordMatch("false");
+      console.log("Nice");
+      setPasswordMatch(true);
     }
+    setConfirmPassword(text);
+  };
+
+  const checkPassword = (text) => {
+    if (confirmPassword != "") {
+      if (text != confirmPassword) {
+        console.log("Not Nice");
+        setPasswordMatch(false);
+      } else {
+        console.log("Nice");
+        setPasswordMatch(true);
+      }
+    }
+    setPassword(text);
+  };
+
+  const createUser = () => {
+    if (emailIsValid && passwordMatch) {
+      USERS.push(
+        new User(
+          "u4",
+          email,
+          password,
+          userName,
+          "https://cdn.discordapp.com/attachments/531813317694586892/915497287726284830/kittyhugs.png",
+          "Default Text",
+          Date.toString,
+          0,
+          major,
+          gender
+        )
+      );
+    } else {
+      setCreateAccount(false);
+    }
+    console.log(USERS);
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View style={styles.csunLogo}>
-        <Image source={require("../app/assets/csun_logo_center_again.png")} />
+    <ScrollView>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+        <Image
+          style={styles.csunLogo}
+          source={require("../app/assets/csun_logo_center_again.png")}
+        />
         <Text style={styles.csunLogoText}>Marketplace</Text>
         <Text style={styles.csunLogoText}>Registration</Text>
-      </View>
-      <View style={styles.registerField}>
-        <Text> CSUN email required to register</Text>
-        <TextInput
-          style={styles.register}
-          placeholder="CSUN Email"
-          value={email}
-          onChangeText={checkCSUNEmail}
-        />
-        {!emailIsValid && (
-          <Text style={styles.invalid}> Email must be an @csun.edu email</Text>
+        <View style={styles.registerField}>
+          <Text> CSUN email required to register</Text>
+          <TextInput
+            style={styles.register}
+            placeholder="CSUN Email"
+            value={email}
+            onChangeText={checkCSUNEmail}
+          />
+          {!emailIsValid && (
+            <Text style={styles.invalid}>
+              {" "}
+              Email must be an @csun.edu email
+            </Text>
+          )}
+          <TextInput
+            style={styles.register}
+            placeholder="Name"
+            value={userName}
+            onChangeText={(text) => setUserName(text)}
+          />
+          <TextInput
+            style={styles.register}
+            placeholder="Major"
+            value={major}
+            onChangeText={(text) => setMajor(text)}
+          />
+          <TextInput
+            style={styles.register}
+            placeholder="Gender"
+            value={gender}
+            onChangeText={(text) => setGender(text)}
+          />
+          <TextInput
+            secureTextEntry={true}
+            style={styles.register}
+            placeholder="Create Password"
+            value={password}
+            onChangeText={checkPassword}
+          />
+          <TextInput
+            secureTextEntry={true}
+            style={styles.register}
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChangeText={checkConfirmPassword}
+          />
+          {!passwordMatch && (
+            <Text style={styles.invalid}> Passwords must match</Text>
+          )}
+        </View>
+        <View style={styles.registerBtn}>
+          <Button color="#D22030" title="Register" onPress={createUser} />
+        </View>
+        {!createAccount && (
+          <Text style={styles.invalid}>
+            {!createAccount}
+            Issues Must Be Fixed Before Account is Created.
+          </Text>
         )}
-        <TextInput
-          secureTextEntry={true}
-          style={styles.register}
-          placeholder="Create Password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-        <TextInput
-          secureTextEntry={true}
-          style={styles.register}
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChangeText={checkConfirmPassword}
-        />
-        {!passwordMatch && (
-          <Text style={styles.invalid}> Passwords must match</Text>
-        )}
-      </View>
-      <View style={styles.registerBtn}>
-        <Button
-          color="#D22030"
-          title="Register"
-          onPress={() => navigation.navigate("Register")}
-        />
-      </View>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 
@@ -103,9 +186,7 @@ const styles = StyleSheet.create({
     //justifyContent: "center",
   },
   csunLogo: {
-    position: "absolute",
     alignSelf: "center",
-    top: 60,
   },
   csunLogoText: {
     alignSelf: "center",
@@ -114,7 +195,7 @@ const styles = StyleSheet.create({
   },
   registerField: {
     //position: "absolute",
-    top: "80%",
+    //top: "80%",
   },
   register: {
     margin: 12,
@@ -122,8 +203,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   registerBtn: {
-    top: "90%",
-    width: "50%",
     alignSelf: "center",
   },
   invalid: {
