@@ -13,6 +13,9 @@ import {
 import { useState, useReducer } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { USERS } from "../data/dummy-data";
+import { useNavigation } from "@react-navigation/core";
+import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
+import { getFormattedDate } from "../components/HelperMethods";
 
 const formReducer = (state, action) => {
   if (action.type === "UPDATE") {
@@ -87,14 +90,14 @@ function RegisterScreen({ navigation }) {
           email,
           password,
           userName,
-          "https://cdn.discordapp.com/attachments/531813317694586892/915497287726284830/kittyhugs.png",
+          "https://gfsstore.com/wp-content/themes/gfsstore.com/images/no_image_available.png", // please replace this with something not stolen
           "Default Text",
-          Date.toString,
-          0,
+          getFormattedDate(),
           major,
           gender
         )
       );
+      navigation.navigate("Login");
     } else {
       setCreateAccount(false);
     }

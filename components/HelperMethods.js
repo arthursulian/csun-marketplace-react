@@ -33,5 +33,11 @@ function createNewUser(props) {
   //PRODUCTS
 }
 
-export { getUserByID, getProductsByOwner, authenticate };
+function getFormattedDate() {
+  date = new Date();
+  month = date.getMonth() + 1;
+  return month + "/" + date.getDate() + "/" + date.getFullYear();
+}
+
+export { getUserByID, getProductsByOwner, authenticate, getFormattedDate };
 export default getProductByID;
