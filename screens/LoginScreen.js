@@ -11,6 +11,27 @@ import {
 import { useSelector } from "react-redux";
 import { authenticate } from "../components/HelperMethods";
 
+// begin medium weirdo code
+import { useStateValue } from "../state";
+
+const ThemedButton = () => {
+  const [{ theme }, dispatch] = useStateValue();
+
+  return (
+    <Button
+      title="Make me blue!"
+      color={theme.primary}
+      onPress={() =>
+        dispatch({
+          type: "changeTheme",
+          newTheme: { primary: "blue" },
+        })
+      }
+    />
+  );
+};
+// end medium weirdo code
+
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -72,6 +93,7 @@ function LoginScreen({ navigation }) {
             onPress={() => navigation.navigate("Register")}
           />
         </View>
+        {/* <ThemedButton /> */}
       </View>
     </View>
   );

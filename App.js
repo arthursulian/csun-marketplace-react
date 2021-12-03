@@ -22,7 +22,35 @@ import HeaderRight from "./components/HeaderRight";
 // Stack navigator needed for moving between screens
 const Stack = createStackNavigator();
 
+// code from that Medium weirdo
+import { StateProvider } from "./state";
+
 function App() {
+  const initialState = {
+    theme: { primary: "green" },
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "changeTheme":
+        return {
+          ...state,
+          theme: action.newTheme,
+        };
+
+      default:
+        return state;
+    }
+  };
+
+  return (
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <App2 />
+    </StateProvider>
+  );
+}
+
+function App2() {
   return (
     // JSX Element needed as root element for Redux
     <Provider store={Store}>
