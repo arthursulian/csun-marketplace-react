@@ -38,7 +38,11 @@ function ProductListing(props) {
       <Text style={GlobalStyles.header}>Item Description</Text>
       <Text>{props.product.description}</Text>
       <View style={GlobalStyles.centeredButton}>
-        <Button color="#D22030" title="Buy Item" />
+        <Button
+          color="#D22030"
+          title="Buy Item"
+          onPress={() => navigation.navigate("Billing")}
+        />
       </View>
     </View>
   );
