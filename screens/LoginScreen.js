@@ -49,6 +49,13 @@ function LoginScreen({ navigation }) {
             onPress={() => navigation.navigate("Register")}
           />
         </View>
+        <View style={styles.navButtons}>
+          <Button
+            color="#D22030"
+            title="Drawer Navigation Test"
+            onPress={() => navigation.navigate("DrawerTest")}
+          />
+        </View>
       </View>
     </View>
   );

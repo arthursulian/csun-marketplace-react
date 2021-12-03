@@ -12,15 +12,20 @@ import ProductScreen from "./screens/ProductScreen";
 //Navigation Imports
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 
 // Redux Stuff
 import { Provider } from "react-redux";
 import { Store } from "./redux/store/store";
 import HeaderRight from "./components/HeaderRight";
+import DrawerNav from "./components/DrawerNav";
 
 // Stack navigator needed for moving between screens
 const Stack = createStackNavigator();
+
+// Drawer navigator needed for using the side menu
+// const Drawer = createDrawerNavigator();
 
 function App() {
   return (
@@ -40,6 +45,7 @@ function App() {
               headerRight: (props) => <HeaderRight {...props} />,
             }}
           />
+          <Stack.Screen name="DrawerTest" component={DrawerNav} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
