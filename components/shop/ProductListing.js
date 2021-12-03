@@ -37,6 +37,7 @@ function ProductListing(props) {
       </View>
       <Text style={GlobalStyles.header}>Item Description</Text>
       <Text>{props.product.description}</Text>
+      {/* <View style={{ flexDirection: "row" }}> */}
       <View style={GlobalStyles.centeredButton}>
         <Button
           color="#D22030"
@@ -44,6 +45,10 @@ function ProductListing(props) {
           onPress={() => navigation.navigate("Billing")}
         />
       </View>
+      {/* <View style={GlobalStyles.sideBySideButtons}>
+          <Button color="#D22030" title="Contact Seller" />
+        </View>
+      </View> */}
     </View>
   );
 }

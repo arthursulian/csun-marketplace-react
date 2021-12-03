@@ -47,7 +47,7 @@ const DrawerNav = ({ route }, props) => {
       >
         <Drawer.Screen name="Feed" component={FeedScreen} />
         <Stack.Screen name="Root" component={RootScreen} />
-        <Stack.Screen name="NewListing" component={NewListingScreen} />
+        <Stack.Screen name="New Listing" component={NewListingScreen} />
 
         {/* TODO: Consider making the below two screens here part of a stack navigator inside the drawer navigator. */}
         <Stack.Screen name="Profile" component={ProfileScreen} />
@@ -60,7 +60,7 @@ const DrawerNav = ({ route }, props) => {
 // temporarily moving this here to eliminate the require cycle
 // when we clean up the navigation post-demo, this will go into one big file with all the rest of the navigation stuff here
 const CustomDrawerContent = (props) => {
-  console.log("I'm CustomDrawerContent, and I'm being run in App.js!");
+  //console.log("I'm CustomDrawerContent, and I'm being run in App.js!");
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItem
@@ -77,6 +77,10 @@ const CustomDrawerContent = (props) => {
           />
         )}
       </UserContext.Consumer>
+      <DrawerItem
+        label="New Listing"
+        onPress={() => props.navigation.navigate("New Listing")}
+      />
     </DrawerContentScrollView>
   );
 };
