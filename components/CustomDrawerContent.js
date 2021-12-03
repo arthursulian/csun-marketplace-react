@@ -38,13 +38,16 @@ const CustomDrawerContent = (props) => {
         label="Feed"
         onPress={() => props.navigation.navigate("Feed")}
       />
-      <DrawerItem
-        label="My Profile"
-        onPress={
-          () =>
-            props.navigation.navigate("Profile", { user: getUserByID("u1") }) // TODO: replace this with the currently logged in user
-        }
-      />
+      <UserContext.Consumer>
+        {(value) => (
+          <DrawerItem
+            label="My Profile"
+            onPress={
+              () => props.navigation.navigate("Profile", { user: value }) // retrieves the currently logged in user from UserContext.Provider
+            }
+          />
+        )}
+      </UserContext.Consumer>
     </DrawerContentScrollView>
   );
 };

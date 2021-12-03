@@ -20,11 +20,12 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import CustomDrawerContent from "./components/CustomDrawerContent";
+// import CustomDrawerContent from "./components/CustomDrawerContent";
 
 // Redux Stuff
 import { Provider } from "react-redux";
 import { Store } from "./redux/store/store";
+import { getUserByID } from "./components/HelperMethods";
 
 // Stack navigator needed for moving between screens
 const Stack = createStackNavigator();
@@ -34,27 +35,52 @@ const Drawer = createDrawerNavigator();
 
 // TODO: transfer the whole navigation hierarchy into a file in the navigation folder
 
-const DrawerNav = (props) => {
-  return (
-    <Drawer.Navigator
-      initialRouteName="Feed"
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
-    >
-      <Drawer.Screen name="Feed" component={FeedScreen} />
-      <Stack.Screen name="Root" component={RootScreen} />
+const UserContext = React.createContext(null);
 
-      {/* TODO: Consider making the below two screens here part of a stack navigator inside the drawer navigator. */}
-      <Stack.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{ hidden: true }}
+const DrawerNav = ({ route }, props) => {
+  return (
+    <UserContext.Provider value={getUserByID(route.params.currentUser)}>
+      <Drawer.Navigator
+        initialRouteName="Feed"
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+      >
+        <Drawer.Screen name="Feed" component={FeedScreen} />
+        <Stack.Screen name="Root" component={RootScreen} />
+
+        {/* TODO: Consider making the below two screens here part of a stack navigator inside the drawer navigator. */}
+        <Stack.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{ hidden: true }}
+        />
+        <Stack.Screen
+          name="Product"
+          component={ProductScreen}
+          options={{ hidden: true }}
+        />
+      </Drawer.Navigator>
+    </UserContext.Provider>
+  );
+};
+// temporarily moving this here
+const CustomDrawerContent = (props) => {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItem
+        label="Feed"
+        onPress={() => props.navigation.navigate("Feed")}
       />
-      <Stack.Screen
-        name="Product"
-        component={ProductScreen}
-        options={{ hidden: true }}
-      />
-    </Drawer.Navigator>
+      <UserContext.Consumer>
+        {(value) => (
+          <DrawerItem
+            label="My Profile"
+            onPress={
+              () => props.navigation.navigate("Profile", { user: value }) // TODO: replace this with the currently logged in user
+            }
+          />
+        )}
+      </UserContext.Consumer>
+    </DrawerContentScrollView>
   );
 };
 

@@ -39,7 +39,7 @@ function LoginScreen({ navigation }) {
           <Button
             color="#D22030"
             title="Log In"
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => navigation.navigate("Home", { currentUser: "u3" })} // REPLACE THIS WITH THE LOGGED IN USER'S ID PLEASE
           />
         </View>
         <View style={styles.navButtons}>
