@@ -9,8 +9,44 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { useState } from "react";
+import { color } from "react-native-reanimated";
 
 function RegisterScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [emailIsValid, setEmailIsValid] = useState("false");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordMatch, setPasswordMatch] = useState("false");
+
+  const checkCSUNEmail = (text) => {
+    // Stole this regex from Google, checks the user's input for valid email characters and also checks the domain to be @csun.edu
+    var re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(text)) {
+      if (text.indexOf("@csun.edu", text.length - "@csun.edu".length) !== -1) {
+        //VALID
+        setEmailIsValid(true);
+        console.log("VALID");
+      } else {
+        setEmailIsValid(false);
+      }
+    } else {
+      setEmailIsValid(false);
+    }
+    setEmail(text);
+  };
+
+  const checkConfirmPassword = (text) => {
+    setConfirmPassword(text);
+    if (password == confirmPassword) {
+      console.log("Nice");
+      setPasswordMatch("true");
+    } else {
+      setPasswordMatch("false");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -21,18 +57,32 @@ function RegisterScreen({ navigation }) {
       </View>
       <View style={styles.registerField}>
         <Text> CSUN email required to register</Text>
-        <TextInput style={styles.register} placeholder="CSUN Email"></TextInput>
-        <TextInput style={styles.register} placeholder="User Name"></TextInput>
+        <TextInput
+          style={styles.register}
+          placeholder="CSUN Email"
+          value={email}
+          onChangeText={checkCSUNEmail}
+        />
+        {!emailIsValid && (
+          <Text style={styles.invalid}> Email must be an @csun.edu email</Text>
+        )}
         <TextInput
           secureTextEntry={true}
           style={styles.register}
           placeholder="Create Password"
-        ></TextInput>
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+        />
         <TextInput
           secureTextEntry={true}
           style={styles.register}
           placeholder="Confirm Password"
-        ></TextInput>
+          value={confirmPassword}
+          onChangeText={checkConfirmPassword}
+        />
+        {!passwordMatch && (
+          <Text style={styles.invalid}> Passwords must match</Text>
+        )}
       </View>
       <View style={styles.registerBtn}>
         <Button
@@ -67,7 +117,6 @@ const styles = StyleSheet.create({
     top: "80%",
   },
   register: {
-    height: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
@@ -76,6 +125,9 @@ const styles = StyleSheet.create({
     top: "90%",
     width: "50%",
     alignSelf: "center",
+  },
+  invalid: {
+    color: "red",
   },
 });
 

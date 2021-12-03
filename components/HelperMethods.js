@@ -16,5 +16,9 @@ function getProductsByOwner(id) {
   return PRODUCTS.filter((prod) => prod.ownerId == id);
 }
 
+function createNewUser(props) {
+  //PRODUCTS
+}
+
 export { getUserByID, getProductsByOwner };
 export default getProductByID;
