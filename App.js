@@ -76,6 +76,10 @@ const CustomDrawerContent = (props) => {
             }
           />
         )}
+        <DrawerItem
+          label="New Listing"
+          onPress={() => props.navigation.navigate("NewListing")}
+        />
       </UserContext.Consumer>
     </DrawerContentScrollView>
   );
