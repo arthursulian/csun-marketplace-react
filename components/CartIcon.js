@@ -1,19 +1,20 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
 
 const CartIcon = (props) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.cartContainer}>
       <TouchableOpacity
         style={styles.touchable}
-        onPress={() => {
-          // Make this navigate to the user's cart
-          // or make a drop-down of cart's current contents
-        }}
+        // Make this navigate to the user's cart
+        // or make a drop-down of cart's current contents
+        onPress={() => navigation.navigate("NewListing")}
       >
         <Image
           style={styles.cartIcon}
-          source={require("../app/assets/CartIcon-Resize-35.png")}
+          source={require("../app/assets/plus-35.png")}
         />
       </TouchableOpacity>
     </View>

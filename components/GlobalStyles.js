@@ -48,6 +48,21 @@ const GlobalStyles = StyleSheet.create({
   bold: {
     fontWeight: "bold",
   },
+
+  Centeredcontainer: {
+    flex: 1,
+    padding: 10,
+    //alignItems: "center",
+    justifyContent: "center",
+  },
+
+  inputFields: {
+    borderWidth: 1,
+    padding: 5,
+    margin: 5,
+    width: 300,
+    alignSelf: "center",
+  },
 });
 
 export default GlobalStyles;

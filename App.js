@@ -8,6 +8,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import FeedScreen from "./screens/FeedScreen";
 import ProductScreen from "./screens/ProductScreen";
+import NewListingScreen from "./screens/NewListingScreen";
 
 //Navigation Imports
 import "react-native-gesture-handler";
@@ -40,6 +41,7 @@ function App() {
               headerRight: (props) => <HeaderRight {...props} />,
             }}
           />
+          <Stack.Screen name="NewListing" component={NewListingScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
