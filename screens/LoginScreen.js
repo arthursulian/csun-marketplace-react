@@ -24,7 +24,7 @@ function LoginScreen({ navigation }) {
     } else {
       console.log("Welcome, " + userExists.name);
 
-      navigation.navigate("Feed");
+      navigation.navigate("Home", { currentUser: userExists.id });
     }
 
     //navigation.navigate("Feed", {loggedIn: this.state.});
