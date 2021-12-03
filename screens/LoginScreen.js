@@ -9,7 +9,6 @@ import {
   View,
 } from "react-native";
 import { useSelector } from "react-redux";
-
 import { authenticate } from "../components/HelperMethods";
 
 function LoginScreen({ navigation }) {
@@ -19,13 +18,13 @@ function LoginScreen({ navigation }) {
 
   const logIn = () => {
     let userExists = authenticate(email, password);
-    if (!userExists) {
+    if (userExists == false) {
       console.log(":(");
       setAuthStatus(false);
     } else {
-      console.log("Nice");
+      console.log("Welcome, " + userExists.name);
 
-      navigation.navigate("Feed", userExists);
+      navigation.navigate("Feed");
     }
 
     //navigation.navigate("Feed", {loggedIn: this.state.});
