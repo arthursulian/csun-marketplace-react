@@ -14,40 +14,44 @@ import {
   View,
   Platform,
   TouchableOpacity,
+  ScrollView,
+  KeyboardAvoidingView,
 } from "react-native";
 
 function NewListingScreen({ navigation }) {
   return (
-    <View style={GlobalStyles.Centeredcontainer}>
-      {/* style={GlobalStyles.Centeredcontainer} */}
+    <ScrollView>
+      <KeyboardAvoidingView style={GlobalStyles.Centeredcontainer}>
+        {/* style={GlobalStyles.Centeredcontainer} */}
 
-      <Text style={GlobalStyles.header}>Product Image</Text>
+        <Text style={GlobalStyles.header}>Product Image</Text>
 
-      <View>
-        <UploadImage />
-      </View>
+        <View>
+          <UploadImage />
+        </View>
 
-      <Text style={GlobalStyles.header}>Product Name</Text>
-      <TextInput
-        style={GlobalStyles.inputFields}
-        placeholder="Title"
-      ></TextInput>
-      <Text style={GlobalStyles.header}>Product Description</Text>
-      <TextInput
-        style={GlobalStyles.inputFields}
-        placeholder="Description"
-      ></TextInput>
-      <Text style={GlobalStyles.header}>Product Price</Text>
-      <TextInput
-        style={GlobalStyles.inputFields}
-        placeholder="Price"
-      ></TextInput>
-      <Button
-        style={GlobalStyles.centeredButton}
-        title="Create Listing"
-        color="#D22030"
-      ></Button>
-    </View>
+        <Text style={GlobalStyles.header}>Product Name</Text>
+        <TextInput
+          style={GlobalStyles.inputFields}
+          placeholder="Title"
+        ></TextInput>
+        <Text style={GlobalStyles.header}>Product Description</Text>
+        <TextInput
+          style={GlobalStyles.inputFields}
+          placeholder="Description"
+        ></TextInput>
+        <Text style={GlobalStyles.header}>Product Price</Text>
+        <TextInput
+          style={GlobalStyles.inputFields}
+          placeholder="Price"
+        ></TextInput>
+        <Button
+          style={GlobalStyles.centeredButton}
+          title="Create Listing"
+          color="#D22030"
+        ></Button>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 
