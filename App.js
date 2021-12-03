@@ -22,7 +22,6 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-// import CustomDrawerContent from "./components/CustomDrawerContent";
 
 // Redux Stuff
 import { Provider } from "react-redux";
@@ -48,24 +47,20 @@ const DrawerNav = ({ route }, props) => {
       >
         <Drawer.Screen name="Feed" component={FeedScreen} />
         <Stack.Screen name="Root" component={RootScreen} />
+        <Stack.Screen name="NewListing" component={NewListingScreen} />
 
         {/* TODO: Consider making the below two screens here part of a stack navigator inside the drawer navigator. */}
-        <Stack.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{ hidden: true }}
-        />
-        <Stack.Screen
-          name="Product"
-          component={ProductScreen}
-          options={{ hidden: true }}
-        />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Product" component={ProductScreen} />
+        <Stack.Screen name="Billing" component={BillingScreen} />
       </Drawer.Navigator>
     </UserContext.Provider>
   );
 };
-// temporarily moving this here
+// temporarily moving this here to eliminate the require cycle
+// when we clean up the navigation post-demo, this will go into one big file with all the rest of the navigation stuff here
 const CustomDrawerContent = (props) => {
+  console.log("I'm CustomDrawerContent, and I'm being run in App.js!");
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItem
@@ -105,8 +100,6 @@ function App() {
               headerRight: (props) => <HeaderRight {...props} />,
             }}
           />
-          <Stack.Screen name="NewListing" component={NewListingScreen} />
-          <Stack.Screen name="Billing" component={BillingScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
@@ -122,4 +115,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-export { Stack };
+export { Stack, Drawer, UserContext };

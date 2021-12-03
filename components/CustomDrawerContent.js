@@ -1,3 +1,5 @@
+/* THIS FILE IS CURRENTLY UNUSED, PRETEND IT'S NOT HERE */
+
 import React from "react";
 import {
   createDrawerNavigator,
@@ -7,6 +9,7 @@ import {
 } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import { getUserByID } from "./HelperMethods";
+import { UserContext } from "../App";
 
 // don't touch this code it doesn't work
 /*
@@ -32,6 +35,10 @@ const DrawerContentFilter = (item) => {
 */
 
 const CustomDrawerContent = (props) => {
+  //
+  console.log(
+    "I'm CustomDrawerContent, and I'm being run in CustomDrawerContent.js!"
+  );
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItem
