@@ -39,7 +39,7 @@ function LoginScreen({ navigation }) {
           <Button
             color="#D22030"
             title="Log In"
-            onPress={() => navigation.navigate("Feed")}
+            onPress={() => navigation.navigate("Home")}
           />
         </View>
         <View style={styles.navButtons}>
@@ -47,13 +47,6 @@ function LoginScreen({ navigation }) {
             color="#D22030"
             title="Register"
             onPress={() => navigation.navigate("Register")}
-          />
-        </View>
-        <View style={styles.navButtons}>
-          <Button
-            color="#D22030"
-            title="Drawer Navigation Test"
-            onPress={() => navigation.navigate("DrawerTest")}
           />
         </View>
       </View>

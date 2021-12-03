@@ -5,7 +5,7 @@ import GlobalStyles from "../components/GlobalStyles";
 function RootScreen({ props }) {
   return (
     <View>
-      <Text>Welcome to CSUN Marketplace!</Text>
+      <Text>Welcome to CSUN Marketplace! This is a placeholder screen.</Text>
     </View>
   );
 }
