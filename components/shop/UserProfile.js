@@ -54,15 +54,14 @@ function UserProfile(props) {
         <ProfileBio content={props.user.bio} />
 
         <Text style={GlobalStyles.header}>Listings</Text>
-
-        <FlatList
-          horizontal={true}
-          style={GlobalStyles.feedContainer}
-          data={getProductsByOwner(props.user.id)}
-          keyExtractor={(item) => item.id}
-          renderItem={(itemData) => <ProductItem product={itemData.item} />}
-        />
       </View>
+      <FlatList
+        horizontal={true}
+        style={GlobalStyles.feedContainer}
+        data={getProductsByOwner(props.user.id)}
+        keyExtractor={(item) => item.id}
+        renderItem={(itemData) => <ProductItem product={itemData.item} />}
+      />
     </View>
   );
 }

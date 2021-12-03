@@ -1,12 +1,23 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, Image, Pressable, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  StyleSheet,
+  Button,
+  useWindowDimensions,
+} from "react-native";
+
 import GlobalStyles from "../GlobalStyles";
 
 const ProductItem = (props) => {
   const navigation = useNavigation();
+  var itemWidth = useWindowDimensions().width - 32;
+  const product = StyleSheet.compose(styles.product, { width: itemWidth });
   return (
-    <Pressable style={styles.product}>
+    <Pressable style={product}>
       <View style={styles.imgView}>
         <Image
           style={GlobalStyles.centeredImage}
