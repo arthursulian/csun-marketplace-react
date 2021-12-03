@@ -44,6 +44,13 @@ const GlobalStyles = StyleSheet.create({
     alignSelf: "center",
   },
 
+  sideBySideButtons: {
+    marginTop: 16,
+    marginHorizontal: 16,
+    width: 128,
+    alignSelf: "center",
+  },
+
   // makes text bold without having to generate another stylesheet
   bold: {
     fontWeight: "bold",
