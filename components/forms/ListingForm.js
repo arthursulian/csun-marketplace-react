@@ -36,13 +36,12 @@ function ListingForm(props) {
       getUniqueProductID(),
       props.user.id,
       productName,
-      getImgForListing(), // Need Arthur's help to locate the image url in the uploadImage component
-      //& find out how to access it from this screen
+      getImgForListing(), // 😏
       productDescription,
       parseFloat(productPrice)
     );
     PRODUCTS.push(newProduct);
-    console.log(PRODUCTS);
+    //console.log(PRODUCTS);
     navigation.navigate("Product", { product: newProduct });
   };
 
