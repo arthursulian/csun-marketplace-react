@@ -1,10 +1,17 @@
 import React from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import GlobalStyles from "../GlobalStyles";
 import ProductItem from "../shop/ProductItem";
 import PRODUCTS from "../../data/dummy-data";
 import USERS from "../../data/dummy-data";
-import getProductByID from "../HelperMethods";
+import getProductByID, { getProductsByOwner } from "../HelperMethods";
 
 const ProfileBio = (props) => {
   return (
@@ -27,7 +34,7 @@ const ProfileDetail = (props) => {
 
 function UserProfile(props) {
   return (
-    <ScrollView>
+    <View>
       <View style={GlobalStyles.pageContainer}>
         <Image
           style={GlobalStyles.centeredImage}
@@ -46,10 +53,16 @@ function UserProfile(props) {
         <Text style={GlobalStyles.header}>Bio</Text>
         <ProfileBio content={props.user.bio} />
 
-        <Text style={GlobalStyles.header}>Most Recent Listing</Text>
-        <ProductItem product={getProductByID("p1")} />
+        <Text style={GlobalStyles.header}>Listings</Text>
       </View>
-    </ScrollView>
+      <FlatList
+        horizontal={true}
+        style={GlobalStyles.feedContainer}
+        data={getProductsByOwner(props.user.id)}
+        keyExtractor={(item) => item.id}
+        renderItem={(itemData) => <ProductItem product={itemData.item} />}
+      />
+    </View>
   );
 }
 

@@ -16,5 +16,28 @@ function getProductsByOwner(id) {
   return PRODUCTS.filter((prod) => prod.ownerId == id);
 }
 
-export { getUserByID, getProductsByOwner };
+function authenticate(email, password) {
+  let user = USERS.find((user) => user.email == email);
+  if (user != undefined) {
+    if (user.password == password) {
+      return user;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+function createNewUser(props) {
+  //PRODUCTS
+}
+
+function getFormattedDate() {
+  date = new Date();
+  month = date.getMonth() + 1;
+  return month + "/" + date.getDate() + "/" + date.getFullYear();
+}
+
+export { getUserByID, getProductsByOwner, authenticate, getFormattedDate };
 export default getProductByID;

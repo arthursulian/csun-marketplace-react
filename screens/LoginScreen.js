@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Image,
@@ -8,8 +8,28 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { useSelector } from "react-redux";
+import { authenticate } from "../components/HelperMethods";
 
 function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [authStatus, setAuthStatus] = useState("true");
+
+  const logIn = () => {
+    let userExists = authenticate(email, password);
+    if (userExists == false) {
+      console.log(":(");
+      setAuthStatus(false);
+    } else {
+      console.log("Welcome, " + userExists.name);
+
+      navigation.navigate("Home", { currentUser: userExists.id });
+    }
+
+    //navigation.navigate("Feed", {loggedIn: this.state.});
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" backgroundColor="#D22030" />
@@ -25,7 +45,9 @@ function LoginScreen({ navigation }) {
         <View style={styles.loginContainer}>
           <TextInput
             style={styles.loginField}
-            placeholder="User Name"
+            placeholder="Email"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           ></TextInput>
         </View>
         <View style={styles.loginContainer}>
@@ -33,14 +55,15 @@ function LoginScreen({ navigation }) {
             secureTextEntry={true}
             style={styles.loginField}
             placeholder="Password"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           ></TextInput>
+          {!authStatus && (
+            <Text style={styles.invalid}>Invalid credentials</Text>
+          )}
         </View>
         <View style={styles.navButtons}>
-          <Button
-            color="#D22030"
-            title="Log In"
-            onPress={() => navigation.navigate("Feed")}
-          />
+          <Button color="#D22030" title="Log In" onPress={logIn} />
         </View>
         <View style={styles.navButtons}>
           <Button
@@ -104,6 +127,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     color: "#D22030",
     paddingTop: 5,
+  },
+  invalid: {
+    color: "red",
   },
 });
 

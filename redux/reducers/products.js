@@ -1,8 +1,9 @@
 import { SET_AVAILABLE_PRODUCTS } from "../actions/products";
-import PRODUCTS from "../../data/dummy-data";
+import PRODUCTS, { USERS } from "../../data/dummy-data";
 
 const initialState = {
   availableProducts: PRODUCTS,
+  users: USERS,
 
   //userProducts: PRODUCTS.filter((prod) => prod.ownerId === "u1"),
 };

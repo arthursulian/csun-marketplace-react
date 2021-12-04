@@ -55,10 +55,11 @@ let PRODUCTS = [
 let USERS = [
   new User(
     "u1",
+    "nick.johnsmith@my.csun.edu",
+    "password",
     "Nick Johnsmith",
     "https://images.unsplash.com/photo-1534125956906-1941fd729155?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=880&q=80",
     "Lorem ipsum dolor sit amet, consecteteur adipiscing elit.",
-    "11/30/2021",
     "11/30/2021",
     4,
     "Computer Science",
@@ -66,10 +67,11 @@ let USERS = [
   ),
   new User(
     "u2",
+    "angelo.leonardi@my.csun.edu",
+    "password",
     "Angelo Leonardi",
     "https://cdn.discordapp.com/attachments/531813317694586892/915497287726284830/kittyhugs.png",
     "We are, like Nebuchadnezzar, dethroned, bereft of reason, and eating grass like an ox.",
-    "11/30/2021",
     "11/30/2021",
     5,
     "Computer Science",
@@ -77,10 +79,11 @@ let USERS = [
   ),
   new User(
     "u3",
+    "a",
+    "a",
     "Chris Owen",
     "https://cdn.discordapp.com/attachments/754862860105941102/814286387149799454/183b142f384f0798eac8c4b8c0c23925.png",
     "To be fair, you have to have a very high IQ to understand Rick and Morty.",
-    "11/30/2021",
     "11/30/2021",
     5,
     "Computer Science",
