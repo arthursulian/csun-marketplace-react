@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   FlatList,
@@ -9,9 +9,12 @@ import {
 } from "react-native";
 import GlobalStyles from "../GlobalStyles";
 import ProductItem from "../shop/ProductItem";
-import PRODUCTS from "../../data/dummy-data";
-import USERS from "../../data/dummy-data";
-import getProductByID, { getProductsByOwner } from "../HelperMethods";
+import { useNavigation } from "@react-navigation/core";
+import getProductByID, {
+  userHasItems,
+  getProductsByOwner,
+} from "../HelperMethods";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const ProfileBio = (props) => {
   return (
@@ -33,6 +36,7 @@ const ProfileDetail = (props) => {
 };
 
 function UserProfile(props) {
+  const navigation = useNavigation();
   return (
     <View>
       <View style={GlobalStyles.pageContainer}>
@@ -55,15 +59,35 @@ function UserProfile(props) {
 
         <Text style={GlobalStyles.header}>Listings</Text>
       </View>
-      <FlatList
-        horizontal={true}
-        style={GlobalStyles.feedContainer}
-        data={getProductsByOwner(props.user.id)}
-        keyExtractor={(item) => item.id}
-        renderItem={(itemData) => <ProductItem product={itemData.item} />}
-      />
+      {userHasItems(props.user.id) && (
+        <FlatList
+          horizontal={true}
+          style={GlobalStyles.feedContainer}
+          data={getProductsByOwner(props.user.id)}
+          keyExtractor={(item) => item.id}
+          renderItem={(itemData) => <ProductItem product={itemData.item} />}
+        />
+      )}
+      {!userHasItems(props.user.id) && (
+        <View>
+          <TouchableOpacity onPress={() => navigation.navigate("New Listing")}>
+            <Text style={styles.notice}>
+              You have no listings.
+              <Text style={styles.hyperlink}>Want to make one? </Text>
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
+const styles = StyleSheet.create({
+  notice: {
+    alignSelf: "center",
+  },
+  hyperlink: {
+    color: "blue",
+  },
+});
 
 export default UserProfile;

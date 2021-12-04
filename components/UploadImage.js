@@ -84,3 +84,5 @@ const imageUploaderStyles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+// let imageURL = _image.uri;
+//export default imageURL;

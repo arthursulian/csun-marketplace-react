@@ -15,12 +15,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import { USERS } from "../data/dummy-data";
 import { useNavigation } from "@react-navigation/core";
 import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
-import { getFormattedDate } from "../components/HelperMethods";
+import { getUniqueUserID } from "../components/HelperMethods";
 
-const formReducer = (state, action) => {
-  if (action.type === "UPDATE") {
-  }
-};
+import { getFormattedDate } from "../components/HelperMethods";
 
 function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -32,6 +29,9 @@ function RegisterScreen({ navigation }) {
   const [gender, setGender] = useState("");
   const [major, setMajor] = useState("");
   const [createAccount, setCreateAccount] = useState("true");
+  const [validForm, setValidForm] = useState("true");
+  const [userExists, setUserExists] = useState(false);
+
   /*
   useReducer(formReducer, {
     inputValues: {
@@ -49,10 +49,11 @@ function RegisterScreen({ navigation }) {
     var re =
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(text)) {
-      if (text.indexOf("@csun.edu", text.length - "@csun.edu".length) !== -1) {
-        //VALID
+      if (
+        text.indexOf("@csun.edu", text.length - "@csun.edu".length) !== -1 ||
+        text.indexOf("@my.csun.edu", text.length - "@my.csun.edu".length) !== -1
+      ) {
         setEmailIsValid(true);
-        console.log("VALID");
       } else {
         setEmailIsValid(false);
       }
@@ -83,25 +84,33 @@ function RegisterScreen({ navigation }) {
   };
 
   const createUser = () => {
-    if (emailIsValid && passwordMatch) {
-      USERS.push(
-        new User(
-          "u4",
-          email,
-          password,
-          userName,
-          "https://gfsstore.com/wp-content/themes/gfsstore.com/images/no_image_available.png", // please replace this with something not stolen
-          "Default Text",
-          getFormattedDate(),
-          major,
-          gender
-        )
-      );
-      navigation.navigate("Login");
+    if (email == "" || password == "") {
+      setValidForm(false);
+    } else if (emailIsValid && passwordMatch) {
+      setValidForm(true);
+      let id = getUniqueUserID(email);
+      if (id == false) {
+        setUserExists(true);
+      } else {
+        setUserExists(false);
+        USERS.push(
+          new User(
+            "u4",
+            email,
+            password,
+            userName,
+            "https://gfsstore.com/wp-content/themes/gfsstore.com/images/no_image_available.png", // please replace this with something not stolen
+            "Default Text",
+            getFormattedDate(),
+            major,
+            gender
+          )
+        );
+        navigation.navigate("Login");
+      }
     } else {
       setCreateAccount(false);
     }
-    console.log(USERS);
   };
 
   return (
@@ -123,8 +132,12 @@ function RegisterScreen({ navigation }) {
           />
           {!emailIsValid && (
             <Text style={styles.invalid}>
-              {" "}
-              Email must be an @csun.edu email
+              Email must be a @my.csun.edu or @csun.edu email.
+            </Text>
+          )}
+          {userExists && emailIsValid && (
+            <Text style={styles.invalid}>
+              A user with this email already exists.
             </Text>
           )}
           <TextInput
@@ -162,7 +175,7 @@ function RegisterScreen({ navigation }) {
             onChangeText={checkConfirmPassword}
           />
           {!passwordMatch && (
-            <Text style={styles.invalid}> Passwords must match</Text>
+            <Text style={styles.invalid}> Passwords must match.</Text>
           )}
         </View>
         <View style={styles.registerBtn}>
@@ -170,8 +183,12 @@ function RegisterScreen({ navigation }) {
         </View>
         {!createAccount && (
           <Text style={styles.invalid}>
-            {!createAccount}
             Issues Must Be Fixed Before Account is Created.
+          </Text>
+        )}
+        {createAccount && !validForm && (
+          <Text style={styles.invalid}>
+            Email and Password fields cannot be empty.
           </Text>
         )}
       </KeyboardAvoidingView>
@@ -208,6 +225,7 @@ const styles = StyleSheet.create({
   },
   invalid: {
     color: "red",
+    alignSelf: "center",
   },
 });
 

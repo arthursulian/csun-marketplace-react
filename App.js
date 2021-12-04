@@ -12,6 +12,8 @@ import NewListingScreen from "./screens/NewListingScreen";
 import BillingScreen from "./screens/BillingScreen";
 import RootScreen from "./screens/RootScreen";
 
+import UserContext from "./components/UserContext";
+
 //Navigation Imports
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -36,7 +38,7 @@ const Drawer = createDrawerNavigator();
 
 // TODO: transfer the whole navigation hierarchy into a file in the navigation folder
 
-const UserContext = React.createContext(null);
+//const UserContext = React.createContext(null);
 
 const DrawerNav = ({ route }, props) => {
   return (
@@ -71,8 +73,8 @@ const CustomDrawerContent = (props) => {
         {(value) => (
           <DrawerItem
             label="My Profile"
-            onPress={
-              () => props.navigation.navigate("Profile", { user: value }) // TODO: replace this with the currently logged in user
+            onPress={() =>
+              props.navigation.navigate("Profile", { user: value })
             }
           />
         )}
@@ -119,4 +121,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-export { Stack, Drawer, UserContext };
+export { Stack, Drawer };
