@@ -1,6 +1,6 @@
 import Product from "../models/product";
 import User from "../models/user";
-
+let IMGS = [];
 let PRODUCTS = [
   new Product(
     "p1",
@@ -92,4 +92,4 @@ let USERS = [
 ];
 
 export default PRODUCTS;
-export { USERS };
+export { USERS, IMGS };

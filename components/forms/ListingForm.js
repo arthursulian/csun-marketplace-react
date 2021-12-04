@@ -20,6 +20,8 @@ import {
 import PRODUCTS from "../../data/dummy-data";
 import Product from "../../models/product";
 import { getUniqueProductID } from "../../components/HelperMethods";
+import { IMGS } from "../../data/dummy-data";
+import { getImgForListing } from "../../components/HelperMethods";
 
 function ListingForm(props) {
   const navigation = useNavigation();
@@ -30,31 +32,11 @@ function ListingForm(props) {
   const [imgURL, setIMGURL] = useState("");
 
   const createProduct = () => {
-    {
-      /*
-      <UserContext.Consumer>
-        {(value) => {
-          const newProduct = new Product(
-            getUniqueProductID(),
-            value.id, // Accessing the logged in user outside of the Context is very difficult, need help
-            productName,
-            "https://gfsstore.com/wp-content/themes/gfsstore.com/images/no_image_available.png", // Need Arthur's help to locate the image url in the uploadImage component
-            //& find out how to access it from this screen
-            productDescription,
-            parseFloat(productPrice)
-          );
-          PRODUCTS.push(newProduct);
-          console.log(PRODUCTS);
-          navigation.navigate("Product", { product: newProduct });
-        }}
-      </UserContext.Consumer>;
-    */
-    }
     const newProduct = new Product(
       getUniqueProductID(),
       props.user.id,
       productName,
-      "https://gfsstore.com/wp-content/themes/gfsstore.com/images/no_image_available.png", // Need Arthur's help to locate the image url in the uploadImage component
+      getImgForListing(), // Need Arthur's help to locate the image url in the uploadImage component
       //& find out how to access it from this screen
       productDescription,
       parseFloat(productPrice)

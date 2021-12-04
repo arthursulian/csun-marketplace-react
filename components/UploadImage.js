@@ -9,21 +9,9 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { AntDesign } from "@expo/vector-icons";
+import { IMGS } from "../data/dummy-data";
 
 export default function UploadImage() {
-  //   useEffect(() => {
-  //     checkForCameraRollPermission();
-  //   }, []);
-  //   const checkForCameraRollPermission = async () => {
-  //     const { status } = await ImagePicker.getMediaLibraryPermissionsAsync();
-  //     if (status !== "granted") {
-  //       alert(
-  //         "Please grant camera roll permissions inside your system's settings"
-  //       );
-  //     } else {
-  //       console.log("Media Permissions are granted");
-  //     }
-  //   };
   const [image, setImage] = useState(null);
   const addImage = async () => {
     let _image = await ImagePicker.launchImageLibraryAsync({
@@ -32,7 +20,7 @@ export default function UploadImage() {
       aspect: [1, 1],
       quality: 1,
     });
-
+    IMGS.push(_image.uri);
     if (!_image.cancelled) {
       setImage(_image.uri);
     }

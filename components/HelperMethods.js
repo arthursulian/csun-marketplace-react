@@ -1,4 +1,4 @@
-import PRODUCTS from "../data/dummy-data";
+import PRODUCTS, { IMGS } from "../data/dummy-data";
 import { USERS } from "../data/dummy-data";
 
 function getProductByID(id) {
@@ -23,6 +23,10 @@ function getUniqueUserID(email) {
   } else {
     return id;
   }
+}
+
+function getImgForListing() {
+  return IMGS[IMGS.length - 1];
 }
 
 function getUserByID(id) {
@@ -70,5 +74,6 @@ export {
   getUniqueProductID,
   getUniqueUserID,
   userHasItems,
+  getImgForListing,
 };
 export default getProductByID;
