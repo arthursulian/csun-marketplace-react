@@ -22,6 +22,21 @@ function FeedScreen({ navigation }) {
     return (
       <View>
         <FlatList
+          ListHeaderComponent={
+            <SearchBar
+              inputStyle={{ backgroundColor: "white" }}
+              containerStyle={{
+                backgroundColor: "white",
+              }}
+              inputContainerStyle={{ backgroundColor: "white" }}
+              placeholder={"Search Available Products"}
+              value={search}
+              onChangeText={(text) => setSearch(text)}
+              onEndEditing={searchByTerm}
+              showLoading={true}
+              onClear={clearSearch}
+            />
+          }
           style={GlobalStyles.feedContainer}
           data={availableProducts}
           keyExtractor={(item) => item.id}
@@ -34,14 +49,27 @@ function FeedScreen({ navigation }) {
   const clearSearch = () => {
     searchProducts("");
     return (
-      <View>
-        <FlatList
-          style={GlobalStyles.feedContainer}
-          data={availableProducts}
-          keyExtractor={(item) => item.id}
-          renderItem={(itemData) => <ProductItem product={itemData.item} />}
-        />
-      </View>
+      <FlatList
+        ListHeaderComponent={
+          <SearchBar
+            inputStyle={{ backgroundColor: "white" }}
+            containerStyle={{
+              backgroundColor: "white",
+            }}
+            inputContainerStyle={{ backgroundColor: "white" }}
+            placeholder={"Search Available Products"}
+            value={search}
+            onChangeText={(text) => setSearch(text)}
+            onEndEditing={searchByTerm}
+            showLoading={true}
+            onClear={clearSearch}
+          />
+        }
+        style={GlobalStyles.feedContainer}
+        data={availableProducts}
+        keyExtractor={(item) => item.id}
+        renderItem={(itemData) => <ProductItem product={itemData.item} />}
+      />
     );
   };
 
@@ -55,21 +83,23 @@ function FeedScreen({ navigation }) {
         {(value) => <Text>Hello {value.name} </Text>}
       </UserContext.Consumer>
     */}
-      <SearchBar
-        inputStyle={{ backgroundColor: "white" }}
-        containerStyle={{
-          backgroundColor: "white",
-        }}
-        inputContainerStyle={{ backgroundColor: "white" }}
-        placeholder={"Search Available Products"}
-        value={search}
-        onChangeText={(text) => setSearch(text)}
-        onEndEditing={searchByTerm}
-        showLoading={true}
-        onClear={clearSearch}
-      />
 
       <FlatList
+        ListHeaderComponent={
+          <SearchBar
+            inputStyle={{ backgroundColor: "white" }}
+            containerStyle={{
+              backgroundColor: "white",
+            }}
+            inputContainerStyle={{ backgroundColor: "white" }}
+            placeholder={"Search Available Products"}
+            value={search}
+            onChangeText={(text) => setSearch(text)}
+            onEndEditing={searchByTerm}
+            showLoading={true}
+            onClear={clearSearch}
+          />
+        }
         style={GlobalStyles.feedContainer}
         data={availableProducts}
         keyExtractor={(item) => item.id}
@@ -78,11 +108,11 @@ function FeedScreen({ navigation }) {
     </View>
   );
 }
-/*
-const styles = StyleSheet.create({
-  mainFeed: {
-    padding: 0,
+
+/* const styles = StyleSheet.create({
+  bleh: {
+    position: "absolute",
   },
-});
-*/
+}); */
+
 export default FeedScreen;
