@@ -11,6 +11,7 @@ import { SearchBar } from "react-native-elements";
 import UserContext from "../components/UserContext";
 import { ScrollView } from "react-native-gesture-handler";
 import { searchProducts } from "../components/HelperMethods";
+import { IMGS } from "../data/dummy-data";
 function FeedScreen({ navigation }) {
   const { availableProducts } = useSelector((state) => state.productsReducer);
 
@@ -42,6 +43,7 @@ function FeedScreen({ navigation }) {
           keyExtractor={(item) => item.id}
           renderItem={(itemData) => <ProductItem product={itemData.item} />}
         />
+        {console.log(IMGS)}
       </View>
     );
   };
