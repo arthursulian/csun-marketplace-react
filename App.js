@@ -11,6 +11,7 @@ import ProductScreen from "./screens/ProductScreen";
 import NewListingScreen from "./screens/NewListingScreen";
 import BillingScreen from "./screens/BillingScreen";
 import RootScreen from "./screens/RootScreen";
+import PaymentConfirmationScreen from "./screens/PaymentConfirmationScreen";
 
 import UserContext from "./components/UserContext";
 
@@ -55,6 +56,10 @@ const DrawerNav = ({ route }, props) => {
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Product" component={ProductScreen} />
         <Stack.Screen name="Billing" component={BillingScreen} />
+        <Stack.Screen
+          name="Payment Confirmation"
+          component={PaymentConfirmationScreen}
+        />
       </Drawer.Navigator>
     </UserContext.Provider>
   );
