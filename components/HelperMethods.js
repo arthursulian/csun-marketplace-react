@@ -9,7 +9,7 @@ function getProductByID(id) {
 function searchProducts(searchTerm) {
   while (FILTEREDPRODUCTS.length > 0) {
     FILTEREDPRODUCTS.pop();
-    console.log("REEEEEEEEEE");
+    //console.log("REEEEEEEEEE");
   }
 
   let newFiltered = PRODUCTS.filter((prod) =>
@@ -28,7 +28,7 @@ function searchProducts(searchTerm) {
   //     prod.title.toLowerCase().includes(searchTerm.toLowerCase())
   //   )
   //);
-  console.log(FILTEREDPRODUCTS);
+  //console.log(FILTEREDPRODUCTS);
 }
 
 function getUniqueProductID() {

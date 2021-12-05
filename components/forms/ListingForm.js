@@ -17,7 +17,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
-import PRODUCTS from "../../data/dummy-data";
+import PRODUCTS, { FILTEREDPRODUCTS } from "../../data/dummy-data";
 import Product from "../../models/product";
 import { getUniqueProductID } from "../../components/HelperMethods";
 import { IMGS } from "../../data/dummy-data";
@@ -41,6 +41,7 @@ function ListingForm(props) {
       parseFloat(productPrice)
     );
     PRODUCTS.push(newProduct);
+    FILTEREDPRODUCTS.push(newProduct);
     //console.log(PRODUCTS);
     navigation.navigate("Product", { product: newProduct });
   };
