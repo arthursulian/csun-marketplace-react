@@ -19,10 +19,10 @@ function LoginScreen({ navigation }) {
   const logIn = () => {
     let userExists = authenticate(email, password);
     if (userExists == false) {
-      console.log(":(");
+      //console.log(":(");
       setAuthStatus(false);
     } else {
-      console.log("Welcome, " + userExists.name);
+      //console.log("Welcome, " + userExists.name);
 
       navigation.navigate("Home", { currentUser: userExists.id });
     }

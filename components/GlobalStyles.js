@@ -70,6 +70,11 @@ const GlobalStyles = StyleSheet.create({
     width: 300,
     alignSelf: "center",
   },
+
+  invalid: {
+    color: "red",
+    alignSelf: "center",
+  },
 });
 
 export default GlobalStyles;
