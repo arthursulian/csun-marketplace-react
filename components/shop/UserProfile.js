@@ -69,8 +69,12 @@ function UserProfile(props) {
         />
       )}
       {!userHasItems(props.user.id) && (
-        <View>
-          <TouchableOpacity onPress={() => navigation.navigate("New Listing")}>
+        <View style={GlobalStyles.pageContainer}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("New Listing", { user: props.user })
+            }
+          >
             <Text style={styles.notice}>
               You have no listings.
               <Text style={styles.hyperlink}>Want to make one? </Text>

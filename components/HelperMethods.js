@@ -1,9 +1,34 @@
-import PRODUCTS, { IMGS } from "../data/dummy-data";
+import PRODUCTS, { FILTEREDPRODUCTS, IMGS } from "../data/dummy-data";
 import { USERS } from "../data/dummy-data";
 
 function getProductByID(id) {
   // returns a Product with the given ID
   return PRODUCTS.find((prod) => prod.id == id);
+}
+
+function searchProducts(searchTerm) {
+  while (FILTEREDPRODUCTS.length > 0) {
+    FILTEREDPRODUCTS.pop();
+    console.log("REEEEEEEEEE");
+  }
+
+  let newFiltered = PRODUCTS.filter((prod) =>
+    prod.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  for (let i = 0; i < newFiltered.length; i++) {
+    if (
+      FILTEREDPRODUCTS.find((prod) => prod.id == newFiltered[i].id) == undefined
+    ) {
+      FILTEREDPRODUCTS.push(newFiltered[i]);
+    }
+  }
+  // FILTEREDPRODUCTS.concat(
+  //   PRODUCTS.filter((prod) =>
+  //     prod.title.toLowerCase().includes(searchTerm.toLowerCase())
+  //   )
+  //);
+  console.log(FILTEREDPRODUCTS);
 }
 
 function getUniqueProductID() {
@@ -75,5 +100,6 @@ export {
   getUniqueUserID,
   userHasItems,
   getImgForListing,
+  searchProducts,
 };
 export default getProductByID;

@@ -90,6 +90,7 @@ let USERS = [
     "Girl Who Codes"
   ),
 ];
+let FILTEREDPRODUCTS = PRODUCTS.slice();
 
 export default PRODUCTS;
-export { USERS, IMGS };
+export { USERS, IMGS, FILTEREDPRODUCTS };
