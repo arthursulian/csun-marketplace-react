@@ -115,7 +115,7 @@ let USERS = [
     "11/30/2021",
     5,
     "Computer Science",
-    "Male"
+    "Female"
   ),
   new User(
     "u3",

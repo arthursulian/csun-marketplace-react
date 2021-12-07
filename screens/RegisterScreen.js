@@ -95,13 +95,14 @@ function RegisterScreen({ navigation }) {
         setUserExists(false);
         USERS.push(
           new User(
-            "u4",
+            id,
             email,
             password,
             userName,
-            "https://gfsstore.com/wp-content/themes/gfsstore.com/images/no_image_available.png", // please replace this with something not stolen
+            "https://cdn.discordapp.com/attachments/911058579073675284/917592789347336192/unknown.png", // please replace this with something not stolen -> no
             "Default Text",
             getFormattedDate(),
+            5,
             major,
             gender
           )

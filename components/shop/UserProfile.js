@@ -77,7 +77,7 @@ function UserProfile(props) {
           >
             <Text style={styles.notice}>
               You have no listings.
-              <Text style={styles.hyperlink}>Want to make one? </Text>
+              <Text style={styles.hyperlink}> Want to make one? </Text>
             </Text>
           </TouchableOpacity>
         </View>
