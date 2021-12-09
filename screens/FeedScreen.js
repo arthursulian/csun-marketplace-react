@@ -43,7 +43,9 @@ function FeedScreen({ navigation }) {
           keyExtractor={(item) => item.id}
           renderItem={(itemData) => <ProductItem product={itemData.item} />}
         />
-        {console.log(IMGS)}
+        {
+          //console.log(IMGS)
+        }
       </View>
     );
   };
