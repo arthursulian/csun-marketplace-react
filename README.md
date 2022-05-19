@@ -1,6 +1,6 @@
 # CSUN Marketplace
 
-React App version <br/>
+### React App version
 A marketplace application created using React Native, created for university senior project.
 
 # Link to Blazor version
