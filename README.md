@@ -1,6 +1,6 @@
 # CSUN Marketplace
 
-  React App version
+React App version
 
 # Link to Blazor version
 
